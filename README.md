@@ -24,10 +24,11 @@ The Spark code is present in the ‘Spark’ folder submitted.
 Run the Spark application using the following commands (In the same folder as the Scala file)
 The following commands are for Spark installed at location “"/home/ubuntu/spark”
 
-  1. scalac *.scala -classpath "/home/ubuntu/spark/jars/*”
-  2. jar -cvf Iot.jar in/skylinelabs/spark/*.class /home/ubuntu/spark/jars/* 
-  3. spark-submit --class in.skylinelabs.spark.IoT --master local Iot.jar
-
+```
+scalac *.scala -classpath "/home/ubuntu/spark/jars/*”
+jar -cvf Iot.jar in/skylinelabs/spark/*.class /home/ubuntu/spark/jars/* 
+spark-submit --class in.skylinelabs.spark.IoT --master local Iot.jar
+```
 
 **This project is a sub-module of ConnectX IoT platform.**
 **Refer https://github.com/SkylineLabs/ConnectX-IoT-platform for more details**
