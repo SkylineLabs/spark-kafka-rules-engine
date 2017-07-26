@@ -30,6 +30,12 @@ jar -cvf Iot.jar in/skylinelabs/spark/*.class /home/ubuntu/spark/jars/*
 spark-submit --class in.skylinelabs.spark.IoT --master local Iot.jar
 ```
 
+
+<br>
+Replace Kafka, MongoDB and MQTT broker IPs as applicable. <br>
+While trying on AWS,  Kafka will be accessible through the "Internal IP" of Kafka server.
+
+
 **This project is a sub-module of ConnectX IoT platform.**
 **Refer https://github.com/SkylineLabs/ConnectX-IoT-platform for more details**
 
