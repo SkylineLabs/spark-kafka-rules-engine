@@ -48,10 +48,13 @@ object IoT {
 
       } else {
         try {
+	  //Replace by MQTT broker IP
           val brokerUrl = "tcp://35.162.23.96:1883"
-          var client = new MqttClient(brokerUrl, "admin/a/a")
+	
+	  
+          var client = new MqttClient(brokerUrl, "admin/a/a")	//BrokerURL, Client ID
           val mqttOptions = new MqttConnectOptions()
-          mqttOptions.setUserName("admin/a/a")
+          mqttOptions.setUserName("admin/a/a")			//Username
           mqttOptions.setPassword("pass".toCharArray())
           client.connect(mqttOptions)
           var msgTopic = client.getTopic(publishTopic)
@@ -71,7 +74,7 @@ object IoT {
   def publishMQTTStateSpecific(projectName: String, sc: SparkContext, thingID: String, deviceIDWithType: String, thingType: String, client: MqttClient) {
     try {
       println("Requested state for " + deviceIDWithType)
-      val readMongoRequestStateURI = "mongodb://localhost"
+      val readMongoRequestStateURI = "mongodb://localhost"	//Replace by MongoDB IP
       val StateGetConfigval = ReadConfig(Map("collection" -> projectName, "database" -> "state", "uri" -> readMongoRequestStateURI, "readPreference.name" -> "secondaryPreferred"), Some(ReadConfig(sc)))
       val messageRDD = MongoSpark.load(sc, StateGetConfigval).collect()
       val filteredMessageRdd = messageRDD.filter(doc => doc.getString("_id") == deviceIDWithType)
@@ -123,8 +126,9 @@ object IoT {
   def main(args: Array[String]) {
 
     var prevHour = 0
-
-    val brokerUrl = "tcp://35.162.23.96:1883"
+     
+    
+    val brokerUrl = "tcp://35.162.23.96:1883"			//Replace by MQTT broker IP
     var client = new MqttClient(brokerUrl, "admin/a/a")
     val mqttOptions = new MqttConnectOptions()
     mqttOptions.setUserName("admin/a/a")
@@ -154,7 +158,7 @@ object IoT {
     val sqc = new SQLContext(sc)
 
     val topicsSet = Set("kafka")
-    val kafkaParams = Map[String, String]("metadata.broker.list" -> "172.31.37.158:9092")
+    val kafkaParams = Map[String, String]("metadata.broker.list" -> "172.31.37.158:9092")	//Replace with appropriate Kafka IP and Port
     val messages = KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](
       ssc, kafkaParams, topicsSet)
 
